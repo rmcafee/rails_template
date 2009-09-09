@@ -11,7 +11,6 @@ gem 'cucumber'
 gem 'webrat'
 gem 'thoughtbot-shoulda', :lib => 'shoulda', :source => "http://gems.github.com"
 gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
-gem 'rubyist-aasm', :lib => 'aasm', :source => 'http://gems.github.com'
 gem 'mislav-will_paginate', :version => '>= 2.2.3', :lib => 'will_paginate', :source => 'http://gems.github.com'
 gem 'unicode', :lib => 'unicode'
 
