@@ -88,20 +88,20 @@ run "cp #{template_base_path}/templates/custom_errors.rb config/initializers/cus
 if yes?("You want to go ahead and set this project up on git?")
   git :init
   
-  file ".gitignore", <<-END
-  .DS_Store
-  .idea
-  .project
-  log/*.log
-  tmp/**/*
-  config/database.yml
-  config/deploy.rb
-  db/*.sqlite3
-  db/*.db
-  END
+file ".gitignore", <<-END
+.DS_Store
+.idea
+.project
+log/*.log
+tmp/**/*
+config/database.yml
+config/deploy.rb
+db/*.sqlite3
+db/*.db
+END
   
   run "cp config/database.yml config/example_database.yml"
   
   git :add => "."
-  git :commit => "-a -m 'Initial commit'"
+  git :commit => "-a -m 'Initial Commit'"
 end
