@@ -44,7 +44,10 @@ if yes?("You wish to use authlogic?")
   gem 'josevalim-auth_helpers', :lib => 'auth_helpers', :git => 'http://github.com/josevalim/auth_helpers/tree/master'
   gem 'josevalim-inherited_resources', :lib => 'inherited_resources', :git => 'http://github.com/josevalim/inherited_resources/tree/master'
 end
-gem 'binarylogic-searchlogic', :lib => 'searchlogic', :git => 'git://github.com/binarylogic/searchlogic.git' if yes?("You wish to use searchlogic?")
+
+if yes?("You wish to use searchlogic?")
+  gem 'binarylogic-searchlogic', :lib => 'searchlogic', :git => 'git://github.com/binarylogic/searchlogic.git'
+end
 
 # Replace 'false' strings with actual false boolean variables
 run %{perl -pi -w -e "s/'false'/false/g;" config/environment.rb}
