@@ -1,6 +1,21 @@
-template_base_path  = '/Users/rmcafee/template_rails'
-core_template_path  = '/Users/rmcafee/template_rails/core_template.rb'
-migrate = false
+template_base_path    = '/Users/rmcafee/rails_template'
+core_template_path    = '/Users/rmcafee/rails_template/core_template.rb'
+
+on_git = false
+
+# Setup Git
+run "cp #{template_base_path}/templates/engine_init.rb init.rb" if yes?("Is this an engine template?")
+if yes?("You want to go ahead and set this project up on git?")
+  git :init
+  
+  run "cp #{template_base_path}/templates/gitignore.standard .gitignore"
+  run "cp config/database.yml config/example_database.yml"
+
+  git :add => "."
+  git :commit => "-a -m 'Initial Commit'"
+    
+  on_git = true
+end
 
 # Config Gems
 gem 'haml', :source => 'http://gems.github.com'
@@ -32,7 +47,6 @@ run %{perl -pi -w -e "s/'false'/false/g;" config/environment.rb}
 
 # Rake Tasks
 rake("gems:install", :sudo => true)
-rake("db:migrate") if migrate == true
 
 # Generators
 generate("rspec")
@@ -84,24 +98,8 @@ run "cp #{template_base_path}/templates/navigation_helper.rb app/helpers/navigat
 # custom_errors.rb
 run "cp #{template_base_path}/templates/custom_errors.rb config/initializers/custom_errors.rb"
 
-# Setup Git
-if yes?("You want to go ahead and set this project up on git?")
-  git :init
-  
-file ".gitignore", <<-END
-.DS_Store
-.idea
-.project
-log/*.log
-tmp/**/*
-config/database.yml
-config/deploy.rb
-db/*.sqlite3
-db/*.db
-END
-  
-  run "cp config/database.yml config/example_database.yml"
-  
+# Recommit if on git
+if on_git
   git :add => "."
-  git :commit => "-a -m 'Initial Commit'"
+  git :commit => "-a -m 'Templated Addons Initialized'"
 end
