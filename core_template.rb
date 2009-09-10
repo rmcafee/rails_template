@@ -39,7 +39,11 @@ plugin 'engine-addons', :git => "git://github.com/rmcafee/engine-addons.git"
 run "cp ~/template_rails/templates/jquery/* public/javascripts/" if yes?("You want to use Jquery?")
 
 # Logic Gems
-gem 'binarylogic-authlogic', :lib => 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git' if yes?("You wish to use authlogic?")
+if yes?("You wish to use authlogic?")
+  gem 'binarylogic-authlogic', :lib => 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git'
+  gem 'josevalim-auth_helpers', :lib => 'auth_helpers', :git => 'http://github.com/josevalim/auth_helpers/tree/master'
+  gem 'josevalim-inherited_resources', :lib => 'inherited_resources', :git => 'http://github.com/josevalim/inherited_resources/tree/master'
+end
 gem 'binarylogic-searchlogic', :lib => 'searchlogic', :git => 'git://github.com/binarylogic/searchlogic.git' if yes?("You wish to use searchlogic?")
 
 # Replace 'false' strings with actual false boolean variables
