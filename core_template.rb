@@ -103,7 +103,7 @@ RUBY_EVAL
 run "cp #{template_base_path}/templates/navigation_helper.rb app/helpers/navigation_helper.rb"
 
 # custom_errors.rb
-run "cp #{template_base_path}/templates/custom_errors.rb config/initializers/custom_errors.rb"
+#run "cp #{template_base_path}/templates/custom_errors.rb config/initializers/custom_errors.rb"
 
 # Recommit if on git
 if on_git
