@@ -31,6 +31,7 @@ gem 'unicode', :lib => 'unicode'
 
 # Install Plugins
 plugin 'exception_notifier', :git => 'git://github.com/rails/exception_notification.git'
+plugin 'rails_indexes', :git => 'git://github.com/eladmeidar/rails_indexes.git'
 plugin 'active_record_base_without_table', :git => 'git://github.com/notahat/active_record_base_without_table.git'
 plugin 'validation_reflection', :git => 'git://github.com/redinger/validation_reflection.git'
 plugin 'engine-addons', :git => "git://github.com/rmcafee/engine-addons.git"
