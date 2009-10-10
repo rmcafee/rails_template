@@ -83,26 +83,6 @@ class String
 end
 RUBY_EVAL
 
-# navigation_helper.rb
-initializer 'navigation_control.rb', <<-RUBY_EVAL
-class ActionController::Base
-  # Set the current nav instance variable, used to set the current nav tab
-  def self.set_current_nav(array_of_selected_items, options = {})
-    set_instance_var_to_value("@current_nav", array_of_selected_items, options)
-  end
-
-  # :nodoc:
-  def self.set_instance_var_to_value(instance_var, value, options = {})
-    before_filter options do |instance |
-      instance.instance_variable_set instance_var, value
-    end
-  end
-  set_current_nav [:none]  
-end
-RUBY_EVAL
-
-run "cp #{template_base_path}/templates/navigation_helper.rb app/helpers/navigation_helper.rb"
-
 # custom_errors.rb
 #run "cp #{template_base_path}/templates/custom_errors.rb config/initializers/custom_errors.rb"
 
