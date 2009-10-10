@@ -1,14 +1,14 @@
-template_base_path    = '/Users/rmcafee/rails_template'
-core_template_path    = '/Users/rmcafee/rails_template/core_template.rb'
+# Replace with your current rails template directory
+templates_path  = "/Users/rmcafee/rails_template/templates"
 
 on_git = false
 
 # Setup Git
-run "cp #{template_base_path}/templates/engine_init.rb init.rb" if yes?("Is this an engine template?")
+run "cp #{templates_path}/engine_init.rb init.rb" if yes?("Is this an engine template?")
 if yes?("You want to go ahead and set this project up on git?")
   git :init
   
-  run "cp #{template_base_path}/templates/gitignore.standard .gitignore"
+  run "cp #{templates_path}/gitignore.standard .gitignore"
   run "cp config/database.yml config/example_database.yml"
 
   git :add => "."
@@ -32,12 +32,11 @@ gem 'unicode', :lib => 'unicode'
 # Install Plugins
 plugin 'exception_notifier', :git => 'git://github.com/rails/exception_notification.git'
 plugin 'rails_indexes', :git => 'git://github.com/eladmeidar/rails_indexes.git'
-plugin 'active_record_base_without_table', :git => 'git://github.com/notahat/active_record_base_without_table.git'
 plugin 'validation_reflection', :git => 'git://github.com/redinger/validation_reflection.git'
 plugin 'engine-addons', :git => "git://github.com/rmcafee/engine-addons.git"
 
 # Using JS
-run "cp ~/template_rails/templates/jquery/* public/javascripts/" if yes?("You want to use Jquery?")
+run "cp #{templates_path}/jquery/* public/javascripts/" if yes?("You want to use Jquery?")
 
 # Logic Gems
 if yes?("You wish to use authlogic?")
@@ -84,7 +83,7 @@ end
 RUBY_EVAL
 
 # custom_errors.rb
-#run "cp #{template_base_path}/templates/custom_errors.rb config/initializers/custom_errors.rb"
+#run "cp #{templates_path}/custom_errors.rb config/initializers/custom_errors.rb"
 
 # Recommit if on git
 if on_git
