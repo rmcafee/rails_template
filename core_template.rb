@@ -9,6 +9,8 @@ if yes?("You want to go ahead and set this project up on git?")
   git :init
   
   run "cp #{templates_path}/gitignore.standard .gitignore"
+  run "cp #{templates_path}/compass.config config/compass.config"
+  run "cp #{templates_path}/compass.rb config/initializers/compass.rb"
   run "cp config/database.yml config/example_database.yml"
 
   git :add => "."
@@ -20,14 +22,15 @@ end
 # Config Gems
 gem 'haml', :source => 'http://gems.github.com'
 gem 'justinfrench-formtastic', :lib => 'formtastic', :source  => 'http://gems.github.com'
+gem 'mislav-will_paginate', :version => '>= 2.2.3', :lib => 'will_paginate', :source => 'http://gems.github.com'
+gem 'unicode', :lib => 'unicode'
+gem 'chriseppstein-compass', :lib => 'compass'
 gem 'rspec', :lib => false, :version => '>= 1.2.0'
 gem 'rspec-rails', :lib => false, :version => '>= 1.2.0'
 gem 'cucumber'
 gem 'webrat'
 gem 'thoughtbot-shoulda', :lib => false, :source => "http://gems.github.com"
 gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
-gem 'mislav-will_paginate', :version => '>= 2.2.3', :lib => 'will_paginate', :source => 'http://gems.github.com'
-gem 'unicode', :lib => 'unicode'
 
 # Install Plugins
 plugin 'exception_notifier', :git => 'git://github.com/rails/exception_notification.git'
