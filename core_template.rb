@@ -80,8 +80,9 @@ end
 
 class String
   def to_slug
-    str = Unicode.normalize_KD(self).gsub(/[^\x00-\x7F]/n,'')
-    str = str.gsub(/\W+/, '-').gsub(/^-+/,'').gsub(/-+$/,'').downcase
+    # str = Unicode.normalize_KD(self).gsub(/[^\x00-\x7F]/n,'')
+    # str = str.gsub(/\W+/, '-').gsub(/^-+/,'').gsub(/-+$/,'').downcase
+    self.gsub(/[\W]/u, ' ').strip.gsub(/\s+/u, '-').gsub(/-\z/u, '').downcase.to_s
   end
 end
 RUBY_EVAL
