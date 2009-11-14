@@ -7,3 +7,6 @@ config/database.yml
 config/deploy.rb
 db/*.sqlite3
 db/*.db
+bin/*
+vendor/gems/*
+!vendor/gems/cache/

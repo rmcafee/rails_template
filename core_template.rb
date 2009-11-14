@@ -1,6 +1,10 @@
 # Replace with your current rails template directory
 templates_path  = "/Users/rmcafee/rails_template/templates"
 
+run "cp #{templates_path}/compass.config config/compass.config"
+run "cp #{templates_path}/compass.rb config/initializers/compass.rb"
+run "cp #{templates_path}/preinitializer.rb config/initializers/preinitializer.rb"
+
 on_git = false
 
 # Setup Git
@@ -9,8 +13,6 @@ if yes?("You want to go ahead and set this project up on git?")
   git :init
   
   run "cp #{templates_path}/gitignore.standard .gitignore"
-  run "cp #{templates_path}/compass.config config/compass.config"
-  run "cp #{templates_path}/compass.rb config/initializers/compass.rb"
   run "cp config/database.yml config/example_database.yml"
 
   git :add => "."
@@ -18,19 +20,6 @@ if yes?("You want to go ahead and set this project up on git?")
     
   on_git = true
 end
-
-# Config Gems
-gem 'haml', :source => 'http://gems.github.com'
-gem 'justinfrench-formtastic', :lib => 'formtastic', :source  => 'http://gems.github.com'
-gem 'mislav-will_paginate', :version => '>= 2.2.3', :lib => 'will_paginate', :source => 'http://gems.github.com'
-gem 'unicode', :lib => 'unicode'
-gem 'chriseppstein-compass', :lib => 'compass'
-gem 'rspec', :lib => false, :version => '>= 1.2.0'
-gem 'rspec-rails', :lib => false, :version => '>= 1.2.0'
-gem 'cucumber'
-gem 'webrat'
-gem 'thoughtbot-shoulda', :lib => false, :source => "http://gems.github.com"
-gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
 
 # Install Plugins
 plugin 'exception_notifier', :git => 'git://github.com/rails/exception_notification.git'
@@ -42,26 +31,11 @@ plugin 'kata_pages', :git => "git://github.com/rmcafee/kata_pages.git"
 # Using JS
 run "cp #{templates_path}/jquery/* public/javascripts/" if yes?("You want to use Jquery?")
 
-# Logic Gems
-if yes?("You wish to use authlogic?")
-  gem 'binarylogic-authlogic', :lib => 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git'
-  gem 'josevalim-auth_helpers', :lib => 'auth_helpers', :git => 'http://github.com/josevalim/auth_helpers/tree/master'
-  gem 'josevalim-inherited_resources', :lib => 'inherited_resources', :git => 'http://github.com/josevalim/inherited_resources/tree/master'
-end
-
-if yes?("You wish to use searchlogic?")
-  gem 'binarylogic-searchlogic', :lib => 'searchlogic', :git => 'git://github.com/binarylogic/searchlogic.git'
-end
-
 # Replace 'false' strings with actual false boolean variables
 run %{perl -pi -w -e "s/'false'/false/g;" config/environment.rb}
 
 # Rake Tasks
-rake("gems:install", :sudo => true)
-
-# Generators
-generate("rspec")
-generate("cucumber")
+# rake("gems:install", :sudo => true)
 
 # Run Setup Commands
 run 'haml --rails .'
@@ -87,8 +61,28 @@ class String
 end
 RUBY_EVAL
 
-# custom_errors.rb
-#run "cp #{templates_path}/custom_errors.rb config/initializers/custom_errors.rb"
+# Put the required gems in development and test environments
+file 'GEMFILE', <<-RUBY_EVAL
+gem 'rails', '2.3.4'
+gem 'haml'
+gem 'justinfrench-formtastic'
+gem 'will_paginate',            '>= 2.2.3'
+gem 'unicode'
+gem 'chriseppstein-compass'
+
+gem 'rspec',                    '>= 1.2.0', :only => 'testing'
+gem 'rspec-rails',              '>= 1.2.0', :only => 'testing'
+gem 'cucumber',                             :only => 'testing'
+gem 'webrat',                               :only => 'testing'
+gem 'thoughtbot-shoulda',                   :only => 'testing'
+gem 'thoughtbot-factory_girl',              :only => 'testing'
+gem 'pickle',                               :only => 'testing'
+
+source 'http://gemcutter.org'
+source 'http://gems.github.com'
+RUBY_EVAL
+
+run "gem bundle"
 
 # Recommit if on git
 if on_git
