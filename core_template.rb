@@ -26,7 +26,7 @@ plugin 'exception_notifier', :git => 'git://github.com/rails/exception_notificat
 plugin 'rails_indexes', :git => 'git://github.com/eladmeidar/rails_indexes.git'
 plugin 'validation_reflection', :git => 'git://github.com/redinger/validation_reflection.git'
 plugin 'engine-addons', :git => "git://github.com/rmcafee/engine-addons.git"
-plugin 'kata_pages', :git => "git://github.com/rmcafee/kata_pages.git"
+# plugin 'kata_pages', :git => "git://github.com/rmcafee/kata_pages.git"
 
 # Using JS
 run "cp #{templates_path}/jquery/* public/javascripts/" if yes?("You want to use Jquery?")
