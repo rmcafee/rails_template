@@ -6,9 +6,14 @@ run "cp #{templates_path}/compass.rb config/initializers/compass.rb"
 run "cp #{templates_path}/preinitializer.rb config/initializers/preinitializer.rb"
 
 on_git = false
+on_refinery = false
+
+if yes?("You want to go ahead and set this project up with refinery cms?")
+  on_refinery = true
+end
 
 # Setup Git
-run "cp #{templates_path}/engine_init.rb init.rb" if yes?("Is this an engine template?")
+# run "cp #{templates_path}/engine_init.rb init.rb" if yes?("Is this an engine template?")
 if yes?("You want to go ahead and set this project up on git?")
   git :init
   
@@ -26,7 +31,6 @@ plugin 'exception_notifier', :git => 'git://github.com/rails/exception_notificat
 plugin 'rails_indexes', :git => 'git://github.com/eladmeidar/rails_indexes.git'
 plugin 'validation_reflection', :git => 'git://github.com/redinger/validation_reflection.git'
 plugin 'engine-addons', :git => "git://github.com/rmcafee/engine-addons.git"
-# plugin 'kata_pages', :git => "git://github.com/rmcafee/kata_pages.git"
 
 # Using JS
 run "cp #{templates_path}/jquery/* public/javascripts/" if yes?("You want to use Jquery?")
@@ -62,26 +66,20 @@ end
 RUBY_EVAL
 
 # Put the required gems in development and test environments
-file 'GEMFILE', <<-RUBY_EVAL
-gem 'rails', '2.3.4'
-gem 'haml'
-gem 'justinfrench-formtastic'
-gem 'will_paginate',            '>= 2.2.3'
-gem 'unicode'
-gem 'chriseppstein-compass'
-
-gem 'rspec',                    '>= 1.2.0', :only => 'testing'
-gem 'rspec-rails',              '>= 1.2.0', :only => 'testing'
-gem 'cucumber',                             :only => 'testing'
-gem 'webrat',                               :only => 'testing'
-gem 'thoughtbot-shoulda',                   :only => 'testing'
-gem 'thoughtbot-factory_girl',              :only => 'testing'
-gem 'pickle',                               :only => 'testing'
-
-source 'http://gemcutter.org'
-source 'http://gems.github.com'
-RUBY_EVAL
-
+unless on_refinery
+  run "cp #{templates_path}/GEMFILE_ORIG GEMFILE"
+else
+  run "cp #{templates_path}/GEMFILE_REFINERY GEMFILE"
+  run "refinery tmp_refine"
+  run "cp -R tmp_refine/* ."
+  run "rm -rf tmp_refine"
+  run "rm -rf CONTRIBUTORS"
+  run "rm -rf LICENSE"
+  puts "*"*50
+  puts '* Make sure to put: require "#{RAILS_ROOT}/vendor/gems/environment" at the top of preinitializer.rb file'
+  puts '* Also remember to do "rake db:setup" '
+  puts "*"*50
+end
 run "gem bundle"
 
 # Recommit if on git
