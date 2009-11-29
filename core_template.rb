@@ -87,3 +87,8 @@ if on_git
   git :add => "."
   git :commit => "-a -m 'Templated Addons Initialized'"
 end
+
+puts "*"*50
+puts "Dont' forget to add sessions secret_key and secret to environment.rb"
+puts "config.action_controller.session = { :session_key => '_new_app_session', :secret => 'your secret'}"
+puts "*"*50
