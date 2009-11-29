@@ -32,6 +32,9 @@ plugin 'rails_indexes', :git => 'git://github.com/eladmeidar/rails_indexes.git'
 plugin 'validation_reflection', :git => 'git://github.com/redinger/validation_reflection.git'
 plugin 'engine-addons', :git => "git://github.com/rmcafee/engine-addons.git"
 
+# Setup Gems
+gem 'formtastic', :source => 'http://gemcutter.org'
+
 # Using JS
 run "cp #{templates_path}/jquery/* public/javascripts/" if yes?("You want to use Jquery?")
 
@@ -81,6 +84,7 @@ else
   puts "*"*50
 end
 run "gem bundle"
+generate "formtastic"
 
 # Recommit if on git
 if on_git
