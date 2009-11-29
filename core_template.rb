@@ -92,3 +92,8 @@ puts "*"*50
 puts "Dont' forget to add sessions secret_key and secret to environment.rb"
 puts "config.action_controller.session = { :session_key => '_new_app_session', :secret => 'your secret'}"
 puts "*"*50
+
+puts "*"*50
+puts "Silence the gem warnings you'll get in Rails"
+puts "Rails::VendorGemSourceIndex.silence_spec_warnings = true"
+puts "*"*50
