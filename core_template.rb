@@ -31,6 +31,7 @@ plugin 'exception_notifier', :git => 'git://github.com/rails/exception_notificat
 plugin 'rails_indexes', :git => 'git://github.com/eladmeidar/rails_indexes.git'
 plugin 'validation_reflection', :git => 'git://github.com/redinger/validation_reflection.git'
 plugin 'engine-addons', :git => "git://github.com/rmcafee/engine-addons.git"
+plugin 'rails_xss', :git => "git://github.com/NZKoz/rails_xss.git"
 
 # Setup Gems
 gem 'formtastic', :source => 'http://gemcutter.org'
@@ -57,6 +58,10 @@ class Hash
       (keys & whitelist).each { |k| h[k] = self[k] }
     end
   end
+  
+  def +(other_hash)
+    self.merge(other_hash) { |k, old_value, new_value| old_value + new_value }
+  end
 end
 
 class String
@@ -70,9 +75,9 @@ RUBY_EVAL
 
 # Put the required gems in development and test environments
 unless on_refinery
-  run "cp #{templates_path}/GEMFILE_ORIG GEMFILE"
+  run "cp #{templates_path}/GEMFILE_ORIG Gemfile"
 else
-  run "cp #{templates_path}/GEMFILE_REFINERY GEMFILE"
+  run "cp #{templates_path}/GEMFILE_REFINERY Gemfile"
   run "refinery tmp_refine"
   run "cp -R tmp_refine/* ."
   run "rm -rf tmp_refine"
