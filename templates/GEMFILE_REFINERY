@@ -1,4 +1,4 @@
-gem 'rails', '2.3.4'
+gem 'rails', '2.3.5'
 gem 'haml'
 gem 'formtastic'
 gem 'will_paginate',            '>= 2.2.3'
