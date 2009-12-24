@@ -1,3 +1,9 @@
+clear_sources
+bundle_path "vendor/bundler_gems"
+
+source 'http://gemcutter.org'
+source 'http://gems.github.com'
+
 gem 'rails', '2.3.5'
 gem 'haml'
 gem 'formtastic'
@@ -11,13 +17,12 @@ gem 'slim_scrooge'
 gem 'hpricot',                  '>= 0.8.1'
 gem 'refinerycms'
 
-gem 'rspec',                    '>= 1.2.0', :only => 'testing'
-gem 'rspec-rails',              '>= 1.2.0', :only => 'testing'
-gem 'cucumber',                             :only => 'testing'
-gem 'webrat',                               :only => 'testing'
-gem 'shoulda',                              :only => 'testing'
-gem 'factory_girl',                         :only => 'testing'
-gem 'pickle',                               :only => 'testing'
-
-source 'http://gemcutter.org'
-source 'http://gems.github.com'
+only :test do
+  gem 'rspec',                    '>= 1.2.0'
+  gem 'rspec-rails',              '>= 1.2.0'
+  gem 'cucumber'                           
+  gem 'webrat'                            
+  gem 'shoulda'                            
+  gem 'factory_girl'                       
+  gem 'pickle'                             
+end

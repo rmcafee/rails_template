@@ -3,7 +3,7 @@ templates_path  = "/Users/rmcafee/rails_template/templates"
 
 run "cp #{templates_path}/compass.config config/compass.config"
 run "cp #{templates_path}/compass.rb config/initializers/compass.rb"
-run "cp #{templates_path}/preinitializer.rb config/initializers/preinitializer.rb"
+run "cp #{templates_path}/preinitializer.rb config/preinitializer.rb"
 
 on_git = false
 on_refinery = false
@@ -84,7 +84,7 @@ else
   run "rm -rf CONTRIBUTORS"
   run "rm -rf LICENSE"
   puts "*"*50
-  puts '* Make sure to put: require "#{RAILS_ROOT}/vendor/gems/environment" at the top of preinitializer.rb file'
+  puts '* Make sure to put: require require "#{File.dirname(__FILE__)}/../vendor/bundler_gems/environment" at the top of preinitializer.rb file'
   puts '* Also remember to do "rake db:setup" '
   puts "*"*50
 end
@@ -105,4 +105,9 @@ puts "*"*50
 puts "*"*50
 puts "Silence the gem warnings you'll get in Rails"
 puts "Rails::VendorGemSourceIndex.silence_spec_warnings = true"
+puts "*"*50
+
+puts "*"*50
+puts "Also don't forget to put this line at the top of all your config/environments/*.rb files"
+puts "Bundler.require_env RAILS_ENV"
 puts "*"*50
