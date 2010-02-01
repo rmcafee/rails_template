@@ -7,10 +7,6 @@ run "cp #{templates_path}/compass.rb config/initializers/compass.rb"
 on_git = false
 on_refinery = false
 
-if yes?("You want to go ahead and set this project up with refinery cms?")
-  on_refinery = true
-end
-
 # Setup Git
 # run "cp #{templates_path}/engine_init.rb init.rb" if yes?("Is this an engine template?")
 if yes?("You want to go ahead and set this project up on git?")
@@ -73,20 +69,7 @@ end
 RUBY_EVAL
 
 # Put the required gems in development and test environments
-unless on_refinery
-  run "cp #{templates_path}/GEMFILE_ORIG Gemfile"
-else
-  run "cp #{templates_path}/GEMFILE_REFINERY Gemfile"
-  run "refinery tmp_refine"
-  run "cp -R tmp_refine/* ."
-  run "rm -rf tmp_refine"
-  run "rm -rf CONTRIBUTORS"
-  run "rm -rf LICENSE"
-  puts "*"*50
-  puts '* Make sure to put: require "#{File.dirname(__FILE__)}/../vendor/bundler_gems/environment" at the top of preinitializer.rb file'
-  puts '* Also remember to do "rake db:setup" '
-  puts "*"*50
-end
+run "cp #{templates_path}/GEMFILE_ORIG Gemfile"
 
 run "gem bundle"
 
