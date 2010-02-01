@@ -8,5 +8,4 @@ config/deploy.rb
 db/*.sqlite3
 db/*.db
 bin/*
-vendor/bundler_gems/gems/*
-!vendor/bundler_gems/gems/cache/
+vendor/bundler_gems/*
