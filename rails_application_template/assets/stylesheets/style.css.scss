@@ -1,0 +1,40 @@
+@import "bootstrap";
+
+h1 {
+  margin-bottom: 20px;
+}
+
+h2 { 
+  padding-bottom: 15px; 
+}
+
+/* Tables */
+
+table .actions .btn-toolbar {
+  margin-top: 0px;
+}
+
+table td.summary { width: 30%; }
+table td .amazon-link { align: center; }
+
+/* Forms */
+
+.remove_nested_fields {
+  margin: 0px;
+  float: right;
+  position: relative;
+  top: -55px;
+  left: -30px;
+}
+
+.association-container {
+  background-color: #EEEEEE;
+  margin: 0px 0px 20px 0px;
+  padding: 15px 15px 15px 0px;
+}
+
+/* General */
+
+.hide {
+  display: none;
+}

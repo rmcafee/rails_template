@@ -8,5 +8,6 @@ config/deploy.rb
 db/*.sqlite3
 db/*.db
 bin/*
-vendor/bundler_gems/gems/*
-!vendor/bundler_gems/gems/cache/
+vendor/bundler_gems/environment.rb
+vendor/bundler_gems/ruby/1.8/*
+!vendor/bundler_gems/ruby/1.8/cache/
