@@ -90,8 +90,11 @@ run "echo 'config/database.yml' >> .gitignore"
 # Add some files for maintenance
 ignore_file = <<-ignoreDATA
 .DS_Store
+.idea
+.project
 .bundle
 db/*.sqlite3
+db/*.db
 db/schema.rb
 log/*.log
 tmp/
