@@ -38,7 +38,8 @@ group :assets do
 end
 
 group :development, :test do
-  gem "pry-rails"
+  gem 'pry-rails'
+  gem 'better_errors'
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-bundler'
