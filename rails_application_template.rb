@@ -13,6 +13,11 @@ gem 'nested_form'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'ransack'
+gem 'encrypted-cookie-store'
+
+# Included automatically in Rails 4
+gem 'strong_parameters'
+gem 'cache_digests'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
