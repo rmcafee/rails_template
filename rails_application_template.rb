@@ -1,7 +1,7 @@
 gem_file = <<-GEMFILE_FILE
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.9'
+gem 'rails', '3.2.10'
 
 ruby '1.9.3'
 
@@ -13,7 +13,7 @@ gem 'nested_form'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'ransack'
-gem 'encrypted-cookie-store'
+gem 'encrypted-cookie-store',   '1.0'
 
 # Included automatically in Rails 4
 gem 'strong_parameters'
@@ -142,6 +142,9 @@ git :add => "."
 git :commit => "-a -m 'Initial Commit'"
 
 run 'bundle'
+
+# Edit Initializer
+gsub_file 'config/initializers/session_store.rb', /cookie_store.*/, "encrypted_cookie_store, :key => '#{`rake secret`.gsub(/\n/,"")}'"
 
 # Run Generators
 generate('rspec:install')
