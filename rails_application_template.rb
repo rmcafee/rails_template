@@ -14,6 +14,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'ransack'
 gem 'encrypted-cookie-store',   '1.0'
+gem 'browser_details'
 
 # Included automatically in Rails 4
 gem 'strong_parameters'
