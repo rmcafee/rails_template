@@ -107,6 +107,7 @@ log/*.log
 tmp/
 .sass-cache/
 config/database.yml
+.powder
 ignoreDATA
 
 create_file ".gitignore", ignore_file
