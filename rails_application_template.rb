@@ -44,13 +44,16 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'rb-fsevent', '~> 0.9.1', :require => false if RUBY_PLATFORM =~ /darwin/i
+
   gem 'pry-rails'
   gem 'better_errors'
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-bundler'
 
-  gem 'debugger'  
+  gem 'debugger'
+  gem 'binding_of_caller' 
 end
 
 group :test do
