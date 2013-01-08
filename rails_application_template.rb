@@ -163,7 +163,7 @@ copy_file("#{current_dir}/rails_application_template/assets/javascripts/bootstra
 # Styles
 copy_file("#{current_dir}/rails_application_template/assets/stylesheets/application.css", "app/assets/stylesheets/application.css")
 copy_file("#{current_dir}/rails_application_template/assets/stylesheets/datepicker.css", "app/assets/stylesheets/datepicker.css")
-create_file("app/assets/stylesheets/style.scss")
+copy_file("#{current_dir}/rails_application_template/assets/stylesheets/style.css.scss", "app/assets/stylesheets/style.css.scss")
 
 # Spec Files
 copy_file("#{current_dir}/rails_application_template/spec/spec_helper.rb", "spec/spec_helper.rb")
