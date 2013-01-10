@@ -1,7 +1,7 @@
 gem_file = <<-GEMFILE_FILE
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.10'
+gem 'rails', '3.2.11'
 
 ruby '1.9.3'
 
