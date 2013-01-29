@@ -10,11 +10,16 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem 'simple_form'
 gem 'nested_form'
+gem 'ransack'
+gem 'browser_details'
+
+# File Uploads and Image Manipulation
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'ransack'
+
+# Security
 gem 'encrypted-cookie-store',   '1.0'
-gem 'browser_details'
+gem 'secure-headers'
 
 # Included automatically in Rails 4
 gem 'strong_parameters'
@@ -47,13 +52,15 @@ group :development, :test do
   gem 'rb-fsevent', '~> 0.9.1', :require => false if RUBY_PLATFORM =~ /darwin/i
 
   gem 'pry-rails'
-  gem 'better_errors'
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-bundler'
 
   gem 'debugger'
-  gem 'binding_of_caller' 
+  
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end
 
 group :test do
