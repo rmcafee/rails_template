@@ -65,7 +65,7 @@ end
 
 group :test do
   gem 'rspec-rails', '>= 2.10.1'
-  gem 'capybara',         '~> 2.0.4'
+  gem 'capybara',    '~> 2.0.2'
   gem 'launchy'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
