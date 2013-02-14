@@ -7,7 +7,7 @@ ruby '1.9.3'
 
 gem 'sqlite3'
 gem 'jquery-rails'
-gem 'haml-rails'
+gem 'haml-rails', '~> 0.4'
 gem 'simple_form'
 gem 'nested_form'
 gem 'ransack'
