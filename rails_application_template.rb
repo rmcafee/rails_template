@@ -24,6 +24,7 @@ gem 'secure-headers'
 # Included automatically in Rails 4
 gem 'strong_parameters'
 gem 'cache_digests'
+gem 'routing_concerns'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
