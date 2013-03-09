@@ -1,16 +1,16 @@
 gem_file = <<-GEMFILE_FILE
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
-
-ruby '1.9.3'
+gem 'rails', '4.0.0.beta1'
 
 gem 'sqlite3'
 gem 'jquery-rails'
-gem 'haml-rails', '~> 0.4'
+gem 'turbolinks'
+
+gem 'haml', '~> 4.0.0'
+
 gem 'simple_form'
 gem 'nested_form'
-gem 'ransack'
 gem 'browser_details'
 
 # File Uploads and Image Manipulation
@@ -18,19 +18,13 @@ gem 'carrierwave'
 gem 'mini_magick'
 
 # Security
-gem 'encrypted-cookie-store',   '1.0'
 gem 'secure-headers'
-
-# Included automatically in Rails 4
-gem 'strong_parameters'
-gem 'cache_digests'
-gem 'routing_concerns'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
-# gem 'jbuilder'
+gem 'jbuilder', '~> 1.0.1'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -39,9 +33,10 @@ gem 'routing_concerns'
 # gem 'capistrano'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+  gem 'sass-rails',   '~> 4.0.0.beta1'
+  gem 'coffee-rails', '~> 4.0.0.beta1'
+
   gem 'bootstrap-sass'
-  gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -158,7 +153,7 @@ git :commit => "-a -m 'Initial Commit'"
 run 'bundle'
 
 # Edit Initializer
-gsub_file 'config/initializers/session_store.rb', /cookie_store.*/, "encrypted_cookie_store, :key => '#{`rake secret`.gsub(/\n/,"")}'"
+# gsub_file 'config/initializers/session_store.rb', /cookie_store.*/, "encrypted_cookie_store, :key => '#{`rake secret`.gsub(/\n/,"")}'"
 
 # Run Generators
 generate('rspec:install')
@@ -185,6 +180,17 @@ run("mkdir -p spec/factories")
 # Replace Layout
 remove_file("app/views/layouts/application.html.erb")
 copy_file("#{current_dir}/rails_application_template/views/layouts/application.html.haml", "app/views/layouts/application.html.haml")
+
+# Prototype Support
+if yes?("Do you want to set this application up to support instant prototyping?")
+copy_file("#{current_dir}/rails_application_template/controllers/prototype_controller.rb", "app/controllers/prototype_controller.rb")
+run("mkdir -p app/views/prototype")
+copy_file("#{current_dir}/rails_application_template/views/prototype/index.html.haml", "app/views/prototype/index.html.haml")
+
+gsub_file "config/routes.rb", 
+          "# The priority is based upon order of creation: first created -> highest priority.", 
+          "match '*path', controller: 'prototype', action: 'display_page', via: :all\n\t# The priority is based upon order of creation: first created -> highest priority."
+end
 
 # Finish Up
 say <<-eos
