@@ -3,7 +3,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.0.beta1'
 
-gem 'sqlite3'
+gem 'sqlite3' unless RUBY_PLATFORM =~ /java/i
+
 gem 'jquery-rails'
 gem 'turbolinks'
 
@@ -18,7 +19,6 @@ gem 'carrierwave'
 gem 'mini_magick'
 
 # Security
-gem 'secure-headers'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -52,10 +52,10 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-bundler'
 
-  gem 'debugger'
+  gem 'debugger'          unless RUBY_PLATFORM =~ /java/i
   
   gem 'better_errors'
-  gem 'binding_of_caller'
+  gem 'binding_of_caller' unless RUBY_PLATFORM =~ /java/i
   gem 'meta_request'
 end
 
